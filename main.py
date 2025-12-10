@@ -8,7 +8,8 @@ Usage:
     - "pink select 2"
     - "pink play"
     - "pink play 3"
-    - "pink pause"
+    - "pink hold"            # <-- changed from "pause"
+    - "pink stop"            # <-- changed from "pause"
     - "pink next"
     - "pink previous"
     - "pink spotify volume up"
@@ -756,8 +757,8 @@ class PinkAssistant:
             self.voice.speak("Playing result." if ok else "Couldn't play the song. Try 'pink search spotify <song>' first.")
             return
 
-        # pause / resume / playpause
-        if any(w in c for w in ["pause", "resume", "playpause", "play/pause", "pause song"]):
+        # hold / stop / resume / playpause
+        if any(w in c for w in ["hold", "stop", "resume", "playpause", "play/pause"]):
             ok = self.system.apps.spotify_play_pause()
             self.voice.speak("Toggled play/pause." if ok else "Couldn't toggle play/pause.")
             return
@@ -873,3 +874,4 @@ if __name__ == "__main__":
     print("Starting Pink Assistant...")
     assistant = PinkAssistant()
     assistant.run()
+    #print hello
